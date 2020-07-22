@@ -1,0 +1,97 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-20 19:12:38
+ * @LastEditTime: 2020-07-20 19:26:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\侧边广告效果\index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侧边广告</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+
+        #aside{
+            width: 250px;
+            position: absolute;
+            left: 0;
+            top: 150px;
+        }
+
+        #aside img{
+            width: 100%;
+        }
+        p{
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="aside">
+        <img src="images/float.png" alt="">
+    </div>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <p>好好学习，天天向上</p>
+    <script src="js/scroll.js"></script>
+    <script>
+        window.onload = function () {
+            //1.获取广告头部的高度
+            var offset_top = $("aside").offsetTop;
+            //2.监听窗口的滚动
+            var begin = 0, end = 0, timer = null;
+            window.onscroll = function () {
+                //2.0清除定时器
+                clearInterval(timer);
+                //2.1获取滚动高度
+                var scroll_top = scroll().top;
+                end = offset_top + scroll_top;
+                //2.2开启缓动动画
+                timer = setInterval(function () {
+                    begin = begin + (end - begin) * 0.2;
+                    $("aside").style.top = begin + 'px';
+
+                    //清除定时器
+                    if(Math.round(begin) === end){
+                        clearInterval(timer);
+                    }
+                }, 20);
+            }
+        }
+    </script>
+</body>
+</html>

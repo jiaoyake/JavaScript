@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/html">
+    // 1. 定义
+    var str = "张三";
+    var str2 = '张三';
+    var age = 18;
+    console.log(typeof str); //string
+    console.log(typeof str2); //string
+    console.log(typeof (age + '')); //string
+    console.log(typeof age.toString()); //18
+    console.log(typeof String(age)); //string
+</script>
+<script type="text/html">
+    var str = "A,Hello World";
+    var str1 = "你好，中国！";
+    var str2 = "abcd";
+    console.log(str.charAt(1)); //,
+    console.log(str1.charAt(1)); //好
+    console.log(str.charCodeAt(0)); //65
+    console.log(str1.charCodeAt(0)); //20320
+    console.log(str2.charCodeAt(0)); //97
+</script>
+<script>
+    var str = "Hello world";
+    var str1 = "你好，世界！";
+
+    console.log(getStringLength(str));
+    console.log(getStringLength(str1));
+
+    /**
+     * 获取字符串的真实长度
+     * @param [string] str
+     * @returns {number}
+     */
+    function getStringLength(str) {
+        var len = 0, code = 0;
+        for(var i=0;i<str.length;i++){
+            code = str.charCodeAt(i);
+            if(code >= 0 && code <= 127){
+                len += 1;
+            }else{
+                len += 2;
+            }
+        }
+        return len;
+    }
+</script>
+</body>
+</html>

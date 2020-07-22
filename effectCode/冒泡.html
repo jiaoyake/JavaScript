@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-21 17:54:41
+ * @LastEditTime: 2020-07-21 18:05:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\冒泡.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡机制</title>
+    <style>
+        #father{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="father">
+        <button id="btn">点我</button>
+    </div>
+    <script>
+        var father = document.getElementById("father");
+        var btn = document.getElementById("btn");
+        btn.onclick = function (event) {
+            var event = event || window.event; //阻止事件冒泡
+            if(event && event.stopPropagation){ //w3c标准
+                event.stopPropagation();
+            }else{ //ie678
+                event.calcelBubble = true;
+            }
+            alert("点击了按钮");
+        }
+        father.onclick = function () {
+            alert("点击了父标签");
+        }
+        document.onclick = function () {
+            alert("点击了文档");
+        }
+    </script>
+</body>
+</html>

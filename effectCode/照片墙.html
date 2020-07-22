@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-09 16:10:18
+ * @LastEditTime: 2020-07-09 23:16:03
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\照片墙.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        img{
+            width: 360px;
+            height: 250px;
+        }
+        html, body, ul{
+            width: 100%;
+            height: 100%;
+        }
+        #ps{
+            position: relative;
+        }
+        #ps li{
+            width: 360px;
+            height: 250px;
+            box-shadow: 0 0 10px #000;
+            transition: all 1s;
+            position: absolute;
+        }
+        #ps li.active{
+            left: 50% !important;
+            top: 50% !important;
+            transform: rotate(0deg) translate(-50%, -50%) scale(1.2) !important;
+            z-index: 99 !important;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ps"></ul>
+    <script>
+        var ps = document.getElementById("ps");
+        for(var i=1;i<=10;i++){
+            var li = document.createElement("li");
+            ps.appendChild(li);
+            var img = document.createElement("img");
+            img.src = "img/" + i + ".jpg";
+            li.appendChild(img);
+        }
+        var allLis = ps.children;
+        var screenW = document.documentElement.clientWidth - 360;
+        var screenH = document.documentElement.clientHeight - 350;
+        for(var j=0;j<allLis.length;j++){
+            var li = allLis[j];
+            li.style.top = Math.random() * screenH + 'px';
+            li.style.left = Math.random() * screenW + 'px';
+            li.style.transform = 'rotate('+ Math.random() * 360 +'deg)';
+            li.onclick = function () {
+                for(var a=0;a<allLis.length;a++){
+                    allLis[a].className = '';
+                }
+                this.className = 'active';
+            }
+        }
+    </script>
+</body>
+</html>

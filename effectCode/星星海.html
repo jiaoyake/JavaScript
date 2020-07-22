@@ -1,0 +1,66 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-07 16:27:44
+ * @LastEditTime: 2020-07-07 17:04:14
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\星星海.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星星海</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background-color: #000;
+        }
+        span{
+            width: 70px;
+            height: 70px;
+            background: url('img/star.jpg') no-repeat;
+            position: absolute;
+            background-size: 100% 100%;
+            animation: flash 1s alternate infinite;
+        }
+        @keyframes flash {
+            0%{opacity: 0;}
+            100%{opacity: 1;}
+        }
+        span:hover{
+            transform: rotate(180deg) scale(2) !important;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <span></span>
+    <script>
+        //屏幕宽高
+        var screenW = document.documentElement.clientWidth;
+        var screenH = document.documentElement.clientHeight;
+        for(var i=0;i<=180;i++){
+            //创建星星
+            var span = document.createElement('span');
+            document.body.appendChild(span);
+            //坐标
+            var x = parseInt(Math.random() * screenW);
+            var y = parseInt(Math.random() * screenH);
+            span.style.left = x + 'px';
+            span.style.top = y + 'px';
+            //随机缩放
+            var scale = Math.random() * 1.5;
+            span.style.transform = 'scale( '+ scale +', '+ scale +' )';
+            //频率
+            var rate = Math.random() * 1.5;
+            span.style.animationDelay = rate + 's';
+        }
+    </script>
+</body>
+</html>

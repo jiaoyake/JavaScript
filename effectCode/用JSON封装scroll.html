@@ -1,0 +1,50 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-17 23:34:34
+ * @LastEditTime: 2020-07-17 23:41:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\用JSON封装scroll.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /**
+        *获取滚动的头部距离和滚动距离
+        *scroll().top scroll().left
+        *return {*}
+        */
+        function scroll() {
+            if(window.pageYOffset !== null){
+                return {
+                    top: window.pageYOffset,
+                    left: window.pageXOffset
+                }
+            }else if(document.compatMode === "CSS1Compat"){ //如果浏览器按照w3c的规范来（兼容模式）
+                return {
+                    top: document.documentElement.scrollTop,
+                    left: document.documentElement.scrollLeft
+                }
+            }
+            return {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            }
+        }
+        window.onscroll = function () {
+            console.log(scroll().top);
+        }
+    </script>
+</body>
+</html>

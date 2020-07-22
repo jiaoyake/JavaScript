@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 15:41:08
+ * @LastEditTime: 2020-07-06 15:48:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\防止定时器累加.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <button id="box"></button>
+    <script>
+        var btn = document.getElementById('box');
+        var height = 0, timer = null;
+        btn.onmouseover = function () {
+            /**
+            * 防止定时器累加，先清空再设置定时器
+            **/
+            clearInterval(timer);
+            timer = setInterval(function () {
+                    height += 1;
+                    console.log(height);
+                }, 1000)
+        }
+    </script>
+</body>
+</html>

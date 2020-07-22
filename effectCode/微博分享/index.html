@@ -1,0 +1,81 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-22 13:09:39
+ * @LastEditTime: 2020-07-22 14:04:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\微博分享\index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        p{
+            margin: 100px;
+            width: 300px;
+        }
+        #share_weibo{
+            width: 49px;
+            height: 43px;
+            background: url("img/weibo.png") no-repeat;
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p id="word">
+        微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享
+        分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活
+        微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享
+        分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活
+        微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享
+        分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活微博分享分享生活
+    </p>
+    <div id="share_weibo"></div>
+    <script src="js/myFunc.js"></script>
+    <script>
+        window.onload = function () {
+            var selectedText;
+            //1.监听鼠标抬起
+            $("word").onmouseup = function (event) {
+                //1.0兼容
+                var event = event || window.event;
+                //1.1获取选中的文字
+                if(window.getSelection){ //标准浏览器
+	                selectedText = window.getSelection().toString();
+                }else{ //IE
+	                selectedText = document.selection.createRange().text;
+                }
+                    //1.2显示面板
+                    $("share_weibo").style.display = "block";
+                    //1.3改变位置
+                    $("share_weibo").style.left = event.clientX + 'px';
+                    $("share_weibo").style.top = event.clientY + 'px';
+            }
+            //2.监听文档的点击
+            document.onmousedown = function (event) {
+                //2.0兼容
+                var e = event || window.event;
+                //2.1获取点击区域的ID
+                var targetId = e.target ? e.target.id : e.srcElement.id;
+                //2.2判断
+                if(targetId !== "share_weibo"){
+                    $("share_weibo").style.display = "none";
+                }else{
+                    window.location.href = 'http://v.t.sina.com.cn/share/share.php?searchPic=false&title=' + selectedText + '&url=https://github.com/jiaoyake';
+                }
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            }
+        }
+    </script>
+</body>
+</html>

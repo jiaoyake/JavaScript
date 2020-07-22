@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-22 17:07:46
+ * @LastEditTime: 2020-07-22 17:55:47
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\关于缓动动画.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓动动画</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">向右走</button>
+    <button id="btn2">向下走</button>
+    <div id="box"></div>
+    <script src="js/myFunc.js"></script>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            btn1.onclick = function () {
+                buffer(box, 900, "left");
+            };
+            btn2.onclick = function () {
+                buffer(box, 200, "top");
+            };
+        }
+        function buffer(obj, target, attr) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var begin = parseInt(getCSSAttrValue(obj, attr));
+                var speed = (target - begin) * 0.2;
+                speed = target > begin ? Math.ceil(speed) : Math.floor(speed);
+                obj.style[attr] = begin + speed + 'px';
+                if(begin === target){
+                    clearInterval(obj.timer);
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>

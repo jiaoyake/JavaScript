@@ -1,0 +1,138 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-16 17:18:00
+ * @LastEditTime: 2020-07-17 14:47:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\放大镜.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        img{
+            vertical-align: top;
+        }
+        #box{
+            width: 300px;
+            height: 300px;
+            margin: 100px 0 0 300px;
+            position: relative;
+        }
+        #small_box{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        #small_box img{
+            width: 300px;
+            height: 300px;
+        }
+        #mask{
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 0, .4);
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            display: none;
+        }
+        #big_box{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 320px;
+            display: none;
+        }
+        #big_box img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #list{
+            margin: 10px 0 0 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="small_box">
+            <img src="img/small01.png" alt="">
+            <span id="mask"></span>
+        </div>
+        <div id="big_box">
+            <img src="img/small001.png" alt="">
+        </div>
+    </div>
+    <div id="list">
+        <img src="img/small1.png" alt="">
+        <img src="img/small2.png" alt="">
+        <img src="img/small3.png" alt="">
+    </div>
+    <script>
+        var box = document.getElementById("box");
+        var small_box = box.children[0];
+        var big_box = box.children[1];
+        var mask = small_box.children[1];
+        var big_img = big_box.children[0];
+        var list_img = document.getElementById("list").children;
+        small_box.onmouseover = function () {
+            mask.style.display = 'block';
+            big_box.style.display = 'block';
+            small_box.onmousemove = function (event) {
+                var event = event || window.event;
+                var pointX = event.clientX - box.offsetLeft - mask.offsetWidth * 0.5;
+                var pointY = event.clientY - box.offsetTop - mask.offsetHeight * 0.5;
+                
+                if(pointX < 0){
+                    pointX = 0;
+                }else if(pointX >= small_box.offsetWidth - mask.offsetWidth){
+                    pointX = small_box.offsetWidth - mask.offsetWidth;
+                }
+                if(pointY < 0){
+                    pointY = 0;
+                }else if(pointY >= small_box.offsetHeight - mask.offsetHeight){
+                    pointY = small_box.offsetHeight - mask.offsetHeight;
+                }
+                mask.style.left = pointX + 'px';
+                mask.style.top = pointY + 'px';
+                /*
+                让大图移动起来
+                smallX / bigX = small_box.width / 大图的宽度
+                bigX = smallX / (small_box.width / 大图的宽度)
+                */
+                big_img.style.left = -pointX / (small_box.offsetWidth / big_box.offsetWidth) + 'px';
+                big_img.style.top = -pointY / (small_box.offsetHeight / big_box.offsetHeight) + 'px';
+            }
+        }
+    
+        small_box.onmouseout = function () {
+            mask.style.display = 'none';
+            big_box.style.display = 'none';
+        }
+
+        for(var i=0;i<list_img.length;i++){
+            (function (i) {
+                var img = list_img[i];
+                img.onmouseover = function () {
+                    small_box.children[0].src = "img/small0"+ (i + 1) +".png";
+                    big_img.src = "img/small00"+ (i + 1) +".png";
+                }
+            })(i);
+        }
+    </script>
+</body>
+</html>

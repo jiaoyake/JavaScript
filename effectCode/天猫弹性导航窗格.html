@@ -1,0 +1,104 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-15 16:40:04
+ * @LastEditTime: 2020-07-15 17:25:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\天猫弹性导航窗格.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航窗格</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+        }
+        body{
+            background-color: pink;
+        }
+        #nav{
+            width: 950px;
+            height: 60px;
+            background-color: #fff;
+            margin: 100px auto;
+            background: url("img/cat.png") no-repeat right center #fff;
+            position: relative;
+        }
+        #t_mall{
+            width: 99px;
+            height: 60px;
+            background: url("img/t-mall.png") no-repeat;
+            position: absolute;
+        }
+        #nav ul{
+            position: relative;
+        }
+        #nav ul li{
+            float: left;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 67px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <span id="t_mall"></span>
+        <ul>
+            <li>双11狂欢</li>
+            <li>服装会场</li>
+            <li>数码家电</li>
+            <li>家居建材</li>
+            <li>母婴童装</li>
+            <li>手机会场</li>
+            <li>美妆会场</li>
+            <li>进口会场</li>
+            <li>飞猪旅行</li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function () {
+            var nav = $("nav");
+            var t_mall = nav.children[0];
+            var ul  = nav.children[1];
+            var allLis = ul.children;
+            //记录鼠标点击的位置
+            var beginX = 0;
+            for(var i=0;i<allLis.length;i++){
+                var li = allLis[i];
+                //鼠标进入
+                li.onmouseover = function () {
+                    end = this.offsetLeft;
+                }
+                //鼠标按下
+                li.onmousedown = function () {
+                    beginX = this.offsetLeft;
+                }
+                //鼠标离开
+                li.onmouseout = function () {
+                    end = beginX;
+                }
+            }
+
+            //缓动动画
+            var begin = 0, end = 0;
+            setInterval(function () {
+                begin = begin + (end-begin) * 0.2;
+                t_mall.style.left = begin + 'px';
+            }, 10)
+
+            function $(id) {
+                return typeof id === "string" ? document.getElementById(id) : null;
+            }
+        }
+    </script>
+</body>
+</html>

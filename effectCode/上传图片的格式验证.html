@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>上传图片的格式规范</label>
+<input type="file" id="imgFile">
+<script>
+    /**
+     * jpg, png, gif, jpeg
+     */
+    window.onload = function () {
+        var file = document.getElementById('imgFile');
+        file.onchange = function () {
+            var path = this.value;
+            var suffix = path.substr(path.lastIndexOf('.'));
+            var low_suffix = suffix.toLowerCase();
+            if(low_suffix === '.jpg' || low_suffix === '.png' || low_suffix === '.gif' || low_suffix === 'jpeg'){
+                alert('图片上传格式正确');
+            }else{
+                alert('图片上传格式错误');
+            }
+        }
+    }
+</script>
+</body>
+</html>

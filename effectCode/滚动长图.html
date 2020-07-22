@@ -1,0 +1,99 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 18:07:09
+ * @LastEditTime: 2020-07-06 19:09:09
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\滚动长图.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动长图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background-color: #000000;
+        }
+        img{
+            width: 550px;
+        }
+        #box{
+            width: 550px;
+            height: 350px;
+            overflow: hidden;
+            margin: 100px auto;
+            position: relative;
+        }
+        #img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #to_top, #to_bottom{
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            left: 0;
+            cursor: pointer;
+        }
+        #to_top{
+            top: 0;
+        }
+        #to_bottom{
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img id="img" src="images/长图.png" alt="">
+        <span id="to_top"></span>
+        <span id="to_bottom"></span>
+    </div> 
+    <script>
+        window.onload = function () {
+            var box = document.getElementById('box');
+            var img = document.getElementById('img');
+            var to_top = document.getElementById('to_top');
+            var to_bottom = document.getElementById('to_bottom');
+
+            var num = 0, timer = null;
+            to_top.onmouseover = function () {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    num -= 5;
+                    if(num >= -1025){
+                        img.style.top = num + 'px';  
+                    }else{
+                        clearInterval(timer);
+                    }
+                }, 20);
+            };
+            to_bottom.onmouseover = function () {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    num += 5;
+                    if(num <= 0){
+                        img.style.top = num + 'px';
+                    }else{
+                        clearInterval(timer);
+                    }
+                }, 20);
+            };
+            to_top.onmouseout = function () {
+                clearInterval(timer);
+            }
+            to_bottom.onmouseout = function () {
+                clearInterval(timer);
+            }
+        }
+    </script>
+</body>
+</html>

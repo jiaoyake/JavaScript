@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 20:05:44
+ * @LastEditTime: 2020-07-06 20:36:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\点名册.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点名册</title>
+</head>
+<body>
+    <button id="open">开始点名</button>
+    <button id="close">结束点名</button>
+    <div id="name"></div>
+    <script>
+        var open = document.getElementById('open');
+        var close = document.getElementById('close');
+        var names = document.getElementById('name');
+        var timer = null, nameList = [
+            "张三", "李四", "李三", "王五", "王六", "小陈", "校长"
+        ];
+        open.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                    var num = parseInt(Math.random() * nameList.length);
+                    var n_index = nameList[num];
+                    names.innerText = n_index;
+                }, 20);
+        }
+        close.onclick = function () {
+            clearInterval(timer);
+        }
+    </script>
+</body>
+</html>

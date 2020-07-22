@@ -1,0 +1,64 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-05 23:42:27
+ * @LastEditTime: 2020-07-06 15:19:57
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/chenxinfang/Desktop/未命名文件夹/时钟案例.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟案例</title>
+    <style>
+        #box{
+            width: 600px;
+            height: 600px;
+            background: url('images/clock.jpg') no-repeat;
+            position: relative;
+        }
+        #hour, #minute, #second{
+            position: absolute;
+            width: 30px;
+            height: 600px;
+            left: 50%;
+            top: 0;
+            margin-left: -15px;
+        }
+        #hour{
+            background: url('images/hour.png') no-repeat center center;
+            
+        }
+        #minute{
+            background: url('images/minute.png') no-repeat center center;
+        }
+        #second{
+            background: url('images/second.png') no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+    <script>
+        var hour = document.getElementById('hour');
+        var minute = document.getElementById('minute');
+        var second = document.getElementById('second');
+        setInterval(function () {
+           var date = new Date();
+           var ms = date.getMilliseconds(); //毫秒
+           var s = date.getSeconds() + ms / 1000; //秒 360/60
+           var m = date.getMinutes() + s / 60; //分钟 360/60
+           var h = date.getHours() + m / 60; //小时 360/12
+           hour.style.transform = 'rotate('+ 30 * (h % 12) +'deg)';     
+           minute.style.transform = 'rotate('+ 6 * m +'deg)';
+           second.style.transform = 'rotate('+ 6 * s +'deg)'
+        }, 10)
+    </script>
+</body>
+</html>

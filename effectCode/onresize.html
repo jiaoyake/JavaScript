@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-21 16:15:09
+ * @LastEditTime: 2020-07-21 16:23:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\onresize.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onresize</title>
+</head>
+<body>
+    <script src="js/myFunc.js"></script>
+    <script>
+        window.onload = function () {
+            var bgColor;
+            changeColor();
+            window.onresize = changeColor;
+
+            function changeColor() {
+                if(client().width >= 960){
+                    bgColor = 'red';
+                }else if(client().width >= 640){
+                    bgColor = 'blue';
+                }else{
+                    bgColor = 'green';
+                }
+                document.body.style.backgroundColor = bgColor;
+            }
+        }
+    </script>
+</body>
+</html>

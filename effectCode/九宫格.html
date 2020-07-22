@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #btn{
+            margin: 20px;
+        }
+        #bottom{
+            position: relative;
+        }
+        .bottom-item img{
+            width: 270px;
+            height: 400px;
+        }
+        .bottom-item{
+            width: 270px;
+            height: 450px;
+            background-color: #e8e8e8;
+            margin: 10px 10px;
+        }
+        .bottom-item p:last-child{
+            font-size: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="btn">
+    <button>3列</button>
+    <button>4列</button>
+    <button>5列</button>
+</div>
+<div id="bottom">
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+    <div class="bottom-item">
+        <img src="image/1.jpg" alt="">
+        <p>咱们裸熊</p>
+        <p>咱是一只小熊小熊熊小熊熊可爱小熊熊</p>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var btn = document.getElementById('btn').children;
+        var bottom = document.getElementById('bottom');
+        btn[0].onclick = function () {
+            j_flex(3, bottom);
+        };
+        btn[1].onclick = function () {
+            j_flex(4, bottom);
+        };
+        btn[2].onclick = function () {
+            j_flex(5, bottom);
+        };
+
+        /**
+         * 封装函数
+         * @param allCols 总列数
+         * @param parentNode 节点
+         */
+        function j_flex(allCols, parentNode) {
+            var width = 270, height = 450, marginXY = 10;
+            for(var i=0;i<parentNode.children.length;i++){
+                //计算行数和列数
+                var row = parseInt(i / allCols);
+                var col = parseInt(i % allCols);
+                //盒子的定位
+                var currentBox = parentNode.children[i];
+                currentBox.style.position = 'absolute';
+                currentBox.style.left = col * (width + marginXY) + 'px';
+                currentBox.style.top = row * (height + marginXY) +'px';
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-05 23:05:26
+ * @LastEditTime: 2020-07-05 23:33:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/chenxinfang/Desktop/放假倒计时.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放假倒计时</title>
+    <style>
+        #time{
+            font-size: 50px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="time"></div>
+    <script>
+        window.onload = function () {
+            var time = document.getElementById('time');
+            //1. 获取放假时间
+            var nextDate = new Date('2020/10/1 10:10:10');
+            setInterval(function () {
+                //2. 获取现在时间
+                var currentDate = new Date();
+                //3. 获取现在时间戳
+                var currentTime = currentDate.getTime();
+                //4. 获取放假时间戳
+                var nextTime = nextDate.getTime();
+                //5. 剩下的时间戳
+                var allTime = nextTime - currentTime; //毫秒
+                //7. 毫秒转成秒
+                var allSecond = parseInt(allTime / 1000);
+                //8. 转化
+                var d = size(parseInt(allSecond / 3600 / 24));
+                var h = size(parseInt(allSecond / 3600 % 24));
+                var m = size(parseInt(allSecond / 60 % 60));
+                var s = size(parseInt(allSecond % 60));
+                //9. 注入
+                time.innerHTML = '距离放假还有' + d + '天' + h + '小时' + m + '分钟' + s + '秒';
+            }, 1000)
+            function size(num) {
+                return num>=10 ? num : '0' + num ;
+            }
+        }
+    </script>
+</body>
+</html>

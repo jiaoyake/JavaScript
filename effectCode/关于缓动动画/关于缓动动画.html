@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-22 17:07:46
+ * @LastEditTime: 2020-07-22 17:17:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\关于缓动动画.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓动动画</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">向右走</button>
+    <button id="btn2">向左走</button>
+    <div id="box"></div>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            btn1.onclick = function () {
+                buffer(box, 900);
+            };
+            btn2.onclick = function () {
+                buffer(box, 200);
+            };
+        }
+        function buffer(obj, target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var speed = (target - obj.offsetLeft) * 0.2;
+                speed = target > obj.offsetLeft ? Math.ceil(speed) : Math.floor(speed);
+                obj.style.left = obj.offsetLeft + speed + 'px';
+                if(obj.offsetLeft === target){
+                    clearInterval(obj.timer);
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-17 16:39:22
+ * @LastEditTime: 2020-07-17 17:08:57
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\进度条.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进度条</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+        #progress{
+            width: 1000px;
+            height: 35px;
+            line-height: 35px;
+            margin: 100px auto;
+            position: relative;
+        }
+        #progress_bar{
+            width: 900px;
+            height: 100%;
+            background-color: #ccc;
+            border-radius: 8px;
+            position: relative;
+        }
+        #progress_value{
+            position: absolute;
+            right: 30px;
+            top: 0;
+        }
+        #progress_bar_fg{
+            width: 0;
+            height: 100%;
+            background-color: orangered;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        span{
+            width: 25px;
+            height: 49px;
+            background-color: orangered;
+            position: absolute;
+            left: 0;
+            top: -7px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="progress">
+        <div id="progress_bar">
+            <div id="progress_bar_fg"></div>
+            <span></span>
+        </div>
+        <div id="progress_value">0%</div>
+    </div>
+    <script>
+        window.onload = function () {
+            var progress = document.getElementById("progress");
+            var progress_bar = progress.children[0];
+            var progress_bar_fg = progress_bar.children[0];
+            var mask = progress_bar.children[1];
+            var progress_value = progress.children[1];
+            mask.onmousedown = function (event) {
+                var e = event || window.event;
+                var beginLeft = e.clientX - mask.offsetLeft;
+                document.onmousemove = function (event) {
+                    var e = event || window.event;
+                    var x = e.clientX - beginLeft;
+                    if(x<0){
+                        x = 0;
+                    }else if(x >= progress_bar.offsetWidth - mask.offsetWidth){
+                        x = progress_bar.offsetWidth - mask.offsetWidth;
+                    }
+                    mask.style.left = x + 'px';
+                    progress_bar_fg.style.width = x + 'px';
+                    progress_value.innerHTML = parseInt(x / (progress_bar.offsetWidth - mask.offsetWidth) * 100)  + '%';
+
+                    return false;
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

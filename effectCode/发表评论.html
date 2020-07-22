@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .box-top textarea{
+            width: 70%;
+            height: 100px;
+        }
+        .box-bottom{
+            margin-top: 20px;
+        }
+        #ul{
+            margin: 0 80px;
+        }
+        #ul li{
+            color: red;
+            border-bottom: 1px dashed #ccc;
+            line-height: 44px;
+        }
+        #ul a{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="box-top">
+        <label>发表评论：</label>
+        <textarea id="my_textarea" cols="50" rows="10"></textarea>
+        <button id="btn">发表</button>
+    </div>
+    <div class="box-bottom">
+        <ul id="ul">
+        </ul>
+    </div>
+</div>
+<script>
+    $('btn').onclick = function () {
+        //1.获取发表内容
+        var content = $('my_textarea').value;
+        //2.判断
+        if(content.length === 0){
+            alert('发表内容不能为空！');
+            return;
+        }
+        //3.添加li标签
+        var li = document.createElement('li');
+        li.innerHTML = content+ '<a href="javascript:;">删除</a>';
+        $('ul').insertBefore(li, $('ul').children[0]);
+        //4.清空输入框内容
+        $('my_textarea').value = '';
+        //5.删除评论
+        var as = $('ul').getElementsByTagName('a');
+        for(var i=0;i<as.length;i++){
+            var a = as[i];
+            a.onclick = function () {
+                this.parentNode.remove();
+            }
+        }
+    };
+
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+</body>
+</html>

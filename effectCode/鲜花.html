@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-05 22:32:55
+ * @LastEditTime: 2020-07-05 22:54:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/chenxinfang/Desktop/鲜花.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background-color: #000000;
+            text-align: center;
+            padding: 10px;
+        }
+        #num{
+            font-size: 100px;
+            color: red;
+        }
+        #pic{
+            display: none;;
+        }
+    </style>
+</head>
+<body>
+    <div id="num">5</div>
+    <img id="pic" src="images/pic.jpg" alt="">
+    <script>
+        window.onload = function () {
+            timer = setInterval(function () {
+                    $('num').innerText -= 1;
+
+                    if($('num').innerText == 0){
+                        clearInterval(timer);
+                        $('num').style.display = 'none';
+                        $('pic').style.display = 'block';
+                        $('pic').style.margin = 'auto';
+                    }
+                }, 1000);
+
+            function $(id) {
+                return typeof id === 'string' ? document.getElementById(id) : null;
+            }
+        }
+    </script>
+</body>
+</html>

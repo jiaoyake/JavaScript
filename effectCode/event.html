@@ -1,0 +1,44 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-15 20:56:21
+ * @LastEditTime: 2020-07-15 21:16:32
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\event.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById("box");
+            box.onmousemove = function (event) {
+                var e = event || window.event;
+                
+                var x = e.screenX - box.offsetLeft;
+                var y = e.screenY - box.offsetTop;
+                box.innerText = '(x: '+ x +', y: '+ y +')';
+            }
+        }
+    </script>
+</body>
+</html>

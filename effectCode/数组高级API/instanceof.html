@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/html">
+    //1. instanceof
+    // var arr = [1, 2, "haha"];
+    // console.log(typeof arr); //object
+    // console.log(arr instanceof Array); //true
+
+    //2. Array.isArray()
+    // var arr = [1, 2, "haha"];
+    // var arr2 = new Array();
+    // var name = "jack";
+    // console.log(Array.isArray(arr)); //true
+    // console.log(Array.isArray(arr2)); //true
+    // console.log(Array.isArray(name)); //false
+
+    //3. toString()
+    // var arr = [1, 2, "haha", 3, 4];
+    // console.log(arr.toString()); //1,2,haha,3,4
+    // console.log(typeof arr.toString()); //string
+
+    //4. valueOf()
+    // var arr = [1, 2, "haha", 3, 4];
+    // console.log(arr.valueOf()) //(5) [1, 2, "haha", 3, 4]
+
+    //5. join()
+    // var arr = [1, 2, "haha", 3, 4];
+    // console.log(arr.join("*")); //1*2*haha*3*4
+
+    //6. indexOf()、lastIndexOf()
+    // var arr = [1, 2, 33, 2, 1];
+    // console.log(arr.indexOf(2)); //1
+    // console.log(arr.lastIndexOf(2)); //3
+    // console.log(arr.indexOf(12)); //-1
+    // console.log(arr.lastIndexOf(22)); //-1
+</script>
+<script>
+    // var arr = ['刘备', '张飞', '关羽'];
+    // console.log(arr.join("|"));
+    //
+    // var arr = ["c","a","z","a","a"];
+    // var object = {};
+    // for (var i=0;i<arr.length;i++){
+    //     var key = arr[i];
+    //     if(object[key]){
+    //         object[key] = object[key]+1;
+    //     }else{
+    //         object[key] = 1;
+    //     }
+    // }
+    // console.log(object); //{c: 1, a: 3, z: 1}
+    //
+    // var arr = [1500, 1200, 2000, 2100, 2200];
+    // for (var i=arr.length -1;i>=0;i--){
+    //     if(arr[i] > 2000){
+    //         arr.splice(i,1);
+    //     }
+    // }
+    // console.log(arr); //(3) [1500, 1200, 2000]
+</script>
+</body>
+</html>

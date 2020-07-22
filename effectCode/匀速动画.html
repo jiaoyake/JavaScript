@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 22:36:29
+ * @LastEditTime: 2020-07-06 22:42:18
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\匀速动画.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匀速动画</title>
+    <style>
+        #box{
+            width: 90px;
+            height: 90px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">开始动画</button>
+    <div id="box"></div>
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        btn.onclick = function () {
+            var timer = null,begin = 0, step = 10, target = 700;
+            clearInterval(timer);
+            timer = setInterval(function () {
+                begin += step;
+                if(begin >= target){
+                    begin = target;
+                    clearInterval(timer);
+                }
+                box.style.marginLeft = begin + 'px';
+            }, 10);
+        };
+    </script>
+</body>
+</html>

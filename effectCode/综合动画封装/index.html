@@ -1,0 +1,66 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-22 14:45:33
+ * @LastEditTime: 2020-07-22 15:08:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \未命名文件夹\综合动画封装\index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: relative;
+            left: 10px;
+            top: 100px;
+        }
+        #box2{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: relative;
+            left: 700px;
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">往右走</button>
+    <button id="btn2">往左走</button>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script src="js/myFunc.js"></script>
+    <script>
+        window.onload = function () {
+            $("btn1").onclick = function () {
+                constant($("box1"), 400, 20);
+            }
+            $("btn2").onclick = function () {
+                constant($("box2"), 100, 20);
+            }
+        }
+        /**匀速动画函数
+        *
+        */
+        function constant(obj, target, speed) {
+            clearInterval(obj.timer);
+            //判断方向
+            var dir = obj.offsetLeft < target ? speed : -speed;
+            obj.timer = setInterval(function () {
+                obj.style.left = obj.offsetLeft + dir + 'px';
+                if(Math.abs(target - obj.offsetLeft) < Math.abs(dir)){
+                    clearInterval(obj.timer);
+                    obj.style.left = target + 'px';
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>

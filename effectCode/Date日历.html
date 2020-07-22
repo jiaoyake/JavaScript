@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width: 240px;
+            height: 340px;
+            margin: 100px auto;
+            background-color: orangered;
+            padding: 40px;
+        }
+        #box_top{
+            font-size: 23px;
+            color: #ffffff;
+        }
+        #box_bottom{
+            width: 90%;
+            height: 70%;
+            background-color: orange;
+            margin: 50px auto;
+            font-size: 70px;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="box_top"></div>
+    <div id="box_bottom"></div>
+</div>
+<script>
+    window.onload = function () {
+        var date = new Date();
+        var y = date.getFullYear(),
+            m = date.getMonth() + 1,
+            d = date.getDate(),
+            h = date.getHours(),
+            i = date.getMinutes(),
+            week = date.getDay();
+        var weeks = ['星期日', '星期一.', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        $('box_top').innerText = y + '年' + m +'月' + d + '日' + ' ' + weeks[week];
+        $('box_bottom').innerText = h + ':' + i;
+        function $(id) {
+            return typeof id === 'string' ? document.getElementById(id) : null;
+        }
+    }
+</script>
+</body>
+</html>

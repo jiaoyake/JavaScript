@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 22:43:59
+ * @LastEditTime: 2020-07-06 23:02:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \undefinedc:\Users\chenxf\Desktop\jiaoyake\未命名文件夹\缓冲动画.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓动动画</title>
+    <style>
+        #box{
+            width: 90px;
+            height: 90px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">开始动画</button>
+    <div id="box"></div>
+    <script>
+        window.onload = function () {
+            var timer = null, begin = 0, target = 800;
+            $('btn').onclick = function () {
+                clearInterval(timer);
+                setInterval(function () {
+                    //起始值 += （结束值-起始值） * 缓动系数，缓动系数的大小决定了缓动的快慢
+                    begin += (target - begin) * 0.2;
+                    if(Math.round(begin) >= target){
+                        begin = target;
+                        clearInterval(timer);
+                    }
+                    $('box').style.marginLeft = begin + 'px';
+                }, 100);
+            };
+            function $(id) {
+                return typeof id === 'string' ? document.getElementById(id) : null;
+            };
+        }
+    </script>
+</body>
+</html>
